@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StreamState } from 'src/app/interfaces/stream-state';
 import { Subscription } from 'rxjs';
 import { AudioService } from 'src/app/services/audio.service';
-import { PersistanceService } from 'src/app/services/persistance.service';
+import { PersistenceService } from 'src/app/services/persistence.service';
 
 @Component({
   selector: 'app-player-bar',
@@ -16,7 +16,7 @@ export class PlayerBarComponent implements OnInit {
 
   constructor(
     public audioService: AudioService,
-    private persister: PersistanceService
+    private persister: PersistenceService
   ) { 
     this.currentFile = this.persister.get('audio.file');
   }

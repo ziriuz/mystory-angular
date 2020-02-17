@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AudioService } from "../../services/audio.service";
 import { CloudService } from "../../services/cloud.service";
-import { PersistanceService } from "../../services/persistance.service";
+import { PersistenceService } from "../../services/persistence.service";
 import { StreamState } from "../../interfaces/stream-state";
 import { Subscription } from 'rxjs';
 
@@ -15,18 +15,18 @@ export class PlaylistComponent implements OnInit {
   files: Array<any> = [ ];
   currentFile: any = {};
   state: StreamState;
-  claudSrvSubs: Subscription;
+  cloudSrvSubs: Subscription;
   audioStateSubs: Subscription;
 
   constructor(
      public audioService: AudioService,
      public cloudService: CloudService,
-     private persister: PersistanceService
+     private persister: PersistenceService
   ) { }
 
   ngOnInit() {
     console.log("playlist component ngOnInit");
-    this.claudSrvSubs = this.cloudService.getFiles().subscribe(files => {
+    this.cloudSrvSubs = this.cloudService.getFiles().subscribe(files => {
       this.files = files;
       const index = this.persister.get('audio.id');
       if( index != null){
@@ -43,7 +43,7 @@ export class PlaylistComponent implements OnInit {
   ngOnDestroy() {
     console.log("playlist component ngOnDestroy")
     //this.audioService.stop();
-    this.claudSrvSubs.unsubscribe();
+    this.cloudSrvSubs.unsubscribe();
     this.audioStateSubs.unsubscribe();
   }
 
