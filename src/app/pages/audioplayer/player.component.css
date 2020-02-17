@@ -1,0 +1,35 @@
+.logo {
+	 margin: 2.5rem;
+	 text-align: center;
+	 font-size: 24px;
+	 
+}
+ .logo .mat-icon {
+	 height: 160px !important;
+	 width: 160px !important;
+	 font-size: 160px !important;
+}
+
+ .media-footer {
+	 width: 100%;
+	 position: sticky;
+     top: 50px;
+     z-index: auto;
+
+}
+ .media-footer .time-slider {
+	 width: 100% !important;
+	 margin-left: 20px;
+	 margin-right: 20px;
+}
+ .media-footer .media-action-bar {
+	 width: 100%;
+	 padding: 1.5rem;
+	 padding-top: 0;
+	 justify-content: center;
+}
+ .media-footer .media-action-bar .mat-icon {
+	 height: 48px !important;
+	 width: 48px !important;
+	 font-size: 48px !important;
+}

@@ -1,0 +1,25 @@
+.main-toolbar{
+  height: 50px;
+}
+.main-toolbar-container{
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10001;
+}
+.main-toolbar .spacer {
+	 flex: 1 1 auto;
+	 text-align: center;
+}
+.main-toolbar .toolbar-btn {
+	 font-size: 16px;
+	 margin-right: 5px;
+	 cursor: pointer;
+}
+.logo{
+  margin-top: 10px;
+}
+.header-space{
+  width:100%;
+  height:50px;
+}

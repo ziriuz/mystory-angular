@@ -1,0 +1,24 @@
+  <div *ngIf="currentFile !== null && currentFile?.index !== undefined" class="media-toolbarbar">
+    <mat-toolbar color="secondary">
+        <button mat-icon-button (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing">
+          <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+        </button>
+        <button mat-icon-button (click)="pause()" *ngIf="state?.playing">
+          <mat-icon mat-list-icon>pause</mat-icon>
+        </button>
+        <span class="spacer">
+            <mat-grid-list cols="1" rowHeight="20px">
+                <mat-grid-tile>
+                    <span class="toolbar-text">{{ state?.readableCurrentTime }}</span>
+                    <mat-slider class="time-slider" min="0" [max]="state?.duration" step="1" [value]="state?.currentTime" (input)="onSliderChangeEnd($event)" [disabled]="state?.error || currentFile?.index === undefined"></mat-slider>
+                    <span class="toolbar-text">{{ state?.readableDuration }}</span>
+                </mat-grid-tile>                
+                <mat-grid-tile>
+                    <span class="toolbar-text">
+                    {{currentFile?.file.name}}
+                    </span>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </span>
+    </mat-toolbar>
+  </div>

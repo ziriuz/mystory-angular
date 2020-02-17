@@ -1,0 +1,15 @@
+<app-player *ngIf="currentFile.index !== undefined" [currentFile]="currentFile" (action)="onAction($event)"></app-player>
+<mat-card class="container" color="light">
+<mat-list color="secondary">
+  <h3 mat-subheader>Сказки про Клювонос Мяу</h3>
+  <mat-divider></mat-divider>
+  <mat-list-item *ngFor="let file of files; let i = index; let last = last;" (click)="openFile(file, i)">
+    <mat-icon color="accent" mat-list-icon>music_note</mat-icon>
+    <h4 mat-line>{{ file.name }}</h4>
+    <h5 mat-line>by {{ file.artist }}</h5>
+    <mat-icon color="accent" *ngIf="currentFile.index === i && !state?.error">volume_up</mat-icon>
+    <mat-icon color="warn" *ngIf="currentFile.index === i && state?.error">warning</mat-icon>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </mat-list-item>
+</mat-list>
+</mat-card>

@@ -1,0 +1,32 @@
+<!--
+<mat-toolbar class="main-toolbar">
+  <span>Kluvonos Story</span>
+  <span class="toolbar-space-filler"></span>
+</mat-toolbar>
+<router-outlet></router-outlet>
+
+<div class="footer-toolbar">
+<mat-toolbar>
+  <button mat-icon-button aria-label="QRScan">
+    <mat-icon>all_out</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="QRScan">
+    <mat-icon>search</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="QRScan">
+    <mat-icon>send</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="QRScan">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>
+</div>
+-->
+<div class="container">
+<app-header *ngIf="showHeader" ></app-header>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+<app-player-bar *ngIf="showPlayBar"></app-player-bar>  
+<app-footer *ngIf="showFooter"></app-footer>
+</div>

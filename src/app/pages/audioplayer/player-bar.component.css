@@ -1,0 +1,23 @@
+.media-toolbarbar{
+    height: 50px;
+    bottom: 60px;
+    left:0;
+    width: 100%;
+    z-index: 10000;
+    position: fixed;
+}
+.media-toolbarbar .spacer {
+    flex: 1 1 auto;
+    text-align: center;
+}
+.media-toolbarbar .time-slider {
+    width: 100% !important;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.toolbar-text {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}

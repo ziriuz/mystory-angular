@@ -1,0 +1,29 @@
+<div class="footer-space"></div>
+<div class="footer-toolbar">
+  <mat-toolbar  color="primary">
+    <span class="spacer">
+      <a mat-icon-button routerLink="/dashboard">
+        <mat-icon>home</mat-icon>
+      </a>
+    </span>
+    <span class="spacer">
+      <button mat-icon-button aria-label="QRScan" (click)="fileInput.click()">
+         <mat-icon>all_out</mat-icon>
+      </button>
+      <input hidden #fileInput type="file" accept="image/*" capture="camera"  (change)="onFileChange($event)">
+    </span>
+    <span class="spacer">
+      <button mat-icon-button aria-label="Shops" (click)="showQrString()">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </span>
+    <span class="spacer">
+         <mat-icon></mat-icon>
+    </span> 
+    <span class="action-button">
+      <a routerLink="/audioplayer" mat-fab aria-label="Play">
+         <mat-icon>playlist_play</mat-icon>
+      </a>
+    </span>    
+  </mat-toolbar>  
+</div>

@@ -1,0 +1,17 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Catalog menu">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <div class="catalog-menu">
+  <a mat-menu-item routerLink="/catalog/{{ group.id }}"  *ngFor="let group of groups$ | async">
+    <ng-container *ngIf="selectedGroupId == group.id; else elseBlock">
+      <mat-icon color = "accent">list</mat-icon>
+    </ng-container>
+    <ng-template #elseBlock>
+      <mat-icon>list</mat-icon>  
+    </ng-template>
+    <span>{{ group.name }}</span>
+  </a>
+  </div>
+</mat-menu>
+

@@ -1,0 +1,5 @@
+<mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-tile *ngFor="let product of products$ | async">        
+        <img [src]="product.image" [alt]="product.name"/>
+    </mat-grid-tile>
+</mat-grid-list>

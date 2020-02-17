@@ -1,0 +1,58 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Загрузить сказку
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list color="secondary" *ngIf="product">
+        <mat-list-item >
+              <img matListAvatar src="{{ product.image }}"/>        
+              <h5 mat-line>{{ product.name }}</h5>
+        </mat-list-item>
+        </mat-list>
+        <form class="form-container" [formGroup]="uploadForm">
+            <mat-form-field color="accent">
+              <input name="storyName" matInput placeholder="Название *" formControlName="storyName" >
+              <mat-error *ngIf="storyName.hasError('required')">
+                Укажите название сказки
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field color="accent">
+              <input matInput placeholder="Автор *" formControlName="author">
+              <mat-error *ngIf="author.invalid && (author.dirty || author.touched) && author.errors.required">
+                Укажите автора сказки
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field color="accent">
+              <input matInput placeholder="Город" formControlName="city">
+            </mat-form-field>
+            <button type="submit" [disabled]="!uploadForm.valid">Submit</button>
+            <input hidden #fileInput type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"/>
+        </form>
+        <ul>
+            <li *ngFor="let file of files">                
+                <span mat-line id="file-label">{{ file.filename }} {{ file.message }}</span>
+                <mat-progress-bar *ngIf="file.inProgress" mat-line [value]="file.progress"  color="accent"></mat-progress-bar>
+                <mat-divider></mat-divider>
+            </li>            
+            </ul>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-stroked-button (click)="onSelect()">
+            <mat-icon>add</mat-icon><br/>
+            <span>Select files</span>
+        </button>
+        <button mat-stroked-button color="warn" (click)="onUpload()">  
+            <mat-icon>file_upload</mat-icon><br/>
+            Upload
+        </button>
+    </mat-card-actions>
+</mat-card>
