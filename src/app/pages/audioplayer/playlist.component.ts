@@ -4,6 +4,7 @@ import { CloudService } from "../../services/cloud.service";
 import { PersistenceService } from "../../services/persistence.service";
 import { StreamState } from "../../interfaces/stream-state";
 import { Subscription } from 'rxjs';
+import { Story } from 'src/app/model/story';
 
 @Component({
   selector: 'app-playlist',
@@ -12,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class PlaylistComponent implements OnInit {
 
-  files: Array<any> = [ ];
+  files: Array<Story> = [];
   currentFile: any = {};
   state: StreamState;
   cloudSrvSubs: Subscription;
@@ -26,7 +27,25 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit() {
     console.log("playlist component ngOnInit");
-    this.cloudSrvSubs = this.cloudService.getFiles().subscribe(files => {
+
+    this.cloudSrvSubs = this.cloudService.getStories().subscribe(files => {
+      this.files = files;
+      const id = this.persister.get('audio.id');
+      let index = 0;
+      if( id != null){
+        index = this.files.findIndex( item => item.id === id);
+      }
+      if (index > -1){
+        const isLast = index === this.files.length - 1;
+        const file = this.files[index];
+        this.currentFile = { index, file, isLast };
+      } else {
+        const file = this.persister.get('audio.file');
+        const isLast = false;
+        this.currentFile = { index, file, isLast };
+      }
+    });
+    /*this.cloudSrvSubs = this.cloudService.getFiles().subscribe(files => {
       this.files = files;
       const index = this.persister.get('audio.id');
       if( index != null){
@@ -34,7 +53,8 @@ export class PlaylistComponent implements OnInit {
          const file = this.files[index];
          this.currentFile = { index, file, isLast };           
       }
-    });
+    });*/
+
     // listen to stream state
     this.audioStateSubs = this.audioService.getState().subscribe(state => {
       this.state = state;
@@ -57,7 +77,7 @@ export class PlaylistComponent implements OnInit {
     const isLast = index === this.files.length - 1
     this.currentFile = { index, file, isLast };
     this.audioService.stop();
-    this.persister.set('audio.id', index);
+    this.persister.set('audio.id', this.currentFile.file.id);
     this.persister.set('audio.file', this.currentFile);
     this.playStream(file.url);
   }

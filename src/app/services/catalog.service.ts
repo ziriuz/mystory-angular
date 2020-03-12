@@ -12,7 +12,6 @@ import { environment } from 'src/environments/environment';
 })
 export class CatalogService {
 
-  private groupsUrl = 'assets/groups.json';
   private productsUrl: string = environment.apiBaseUrl + '/products';
   private catalogUrl: string = environment.apiBaseUrl + '/catalog';
 
@@ -60,7 +59,7 @@ export class CatalogService {
   }
 
   getProducts(groupId: number): Observable<Product[]> {
-    return this.http.get<ProductsResponse>(`${this.productsUrl}?catalog=${groupId}`).pipe(
+    return this.http.get<ProductsResponse>(`${this.productsUrl}/catalog/${groupId}`).pipe(
       tap( resp => {
         console.info(`Service response: ${resp.topic} success=${resp.success} message[${resp.message}]`);
         console.info(`data items#: ${resp.products.length}`);

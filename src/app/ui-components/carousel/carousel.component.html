@@ -9,8 +9,8 @@
 	<!-- navigations & thumbnails -->
 	<div class="navigations">
 		<button type="button" (click)="select(activeSlides.previous)" *ngIf="slides.length > 1 && isNavigationVisible">
-        <span>left</span> 
-    </button>
+        	<span>left</span> 
+    	</button>
 		<div>
 			<ol class="thumbnails" *ngIf="slides.length > 1 && isThumbnailsVisible">
 				<li *ngFor="let slide of slides; let i = index;" [class.is-active]="i === activeSlides.current" (click)="select(i)">
@@ -19,7 +19,7 @@
 			</ol>
 		</div>
 		<button type="button" (click)="select(activeSlides.next)" *ngIf="slides.length > 1 && isNavigationVisible">
-        <span>right</span> 
-    </button>
+	        <span>right</span> 
+	    </button>
 	</div>
 </div>

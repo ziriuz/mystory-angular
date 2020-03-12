@@ -1,6 +1,6 @@
 import { Story } from '../model/story';
 import { Product } from '../model/product';
-export const STORIES: Story[] = [
+export const STORIES: any[] = [
   { id: 11, title: 'Dr Nice', author:'user1', drawing: 'http://rs557.ru/photo/2014-01-vangogh/20140104_145323.jpg' },
   { id: 12, title: 'Narco', author:'user1', drawing: 'http://rs557.ru/photo/2014-01-vangogh/20140104_145539.jpg'},
   { id: 13, title: 'Bombasto', author:'user1', drawing: 'http://rs557.ru/photo/2014-01-vangogh/20140104_150612.jpg'},

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StoryService } from 'src/app/services/story.service';
 import { Story } from 'src/app/model/story';
 import { Subscription } from 'rxjs';
+import { SortBy, CloudService } from 'src/app/services/cloud.service';
 
 @Component({
   selector: 'app-top-stories',
@@ -10,22 +10,22 @@ import { Subscription } from 'rxjs';
 })
 export class TopStoriesComponent implements OnInit {
 
-  subs: Subscription;
+  cloudSrvSubs: Subscription;
   stories: Story[];
-  constructor(private storyService: StoryService) { }
+  constructor(private cloudService: CloudService) { }
 
   ngOnInit() {
     this.getStories();
   }
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    this.cloudSrvSubs.unsubscribe();
   }
 
   public getStories(): void {
-    this.subs =
-       this.storyService.getStories().subscribe(
-         res => this.stories = res.slice(0,5)
-       );
+    this.cloudSrvSubs = this.cloudService.getStories(SortBy.Rating)
+    .subscribe(files => {
+      this.stories = files;
+    });  
   }
 
 }

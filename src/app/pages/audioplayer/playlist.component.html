@@ -5,8 +5,9 @@
   <mat-divider></mat-divider>
   <mat-list-item *ngFor="let file of files; let i = index; let last = last;" (click)="openFile(file, i)">
     <mat-icon color="accent" mat-list-icon>music_note</mat-icon>
+    <img matListAvatar src="{{ file.picture }}"/>
     <h4 mat-line>{{ file.name }}</h4>
-    <h5 mat-line>by {{ file.artist }}</h5>
+    <h5 mat-line>by {{ file.author }}</h5>
     <mat-icon color="accent" *ngIf="currentFile.index === i && !state?.error">volume_up</mat-icon>
     <mat-icon color="warn" *ngIf="currentFile.index === i && state?.error">warning</mat-icon>
     <mat-divider *ngIf="!last"></mat-divider>

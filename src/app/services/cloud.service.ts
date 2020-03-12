@@ -4,17 +4,36 @@ import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from  '@angul
 import { map, tap, catchError } from  'rxjs/operators';
 import { FILES } from '../data/mock';
 import { environment } from 'src/environments/environment';
+import { Story, StoriesResponse } from '../model/story';
+
+export enum SortBy {
+  New = 'new',
+  Popular = 'popular',
+  Rating = 'rating'
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class CloudService {
-  SERVER_URL: string = environment.apiBaseUrl + "/stories";
+  private SERVER_URL: string = environment.apiBaseUrl + "/stories";
   
   constructor(private httpClient: HttpClient) { }
 
   getFiles() {
     return of(FILES);
+  }
+
+  getStories(sortBy:SortBy = SortBy.Rating): Observable<Story[]> {
+    console.info(`Service request:`+this.SERVER_URL + '/' + sortBy); 
+    return this.httpClient.get<StoriesResponse>(this.SERVER_URL + '/' + sortBy).pipe(
+      tap( resp => {
+        console.info(`Service response: ${resp.topic} success=${resp.success} message[${resp.message}]`);
+        console.info(`data items#: ${resp.stories.length}`);
+      }),
+      map( resp => resp.stories),
+      catchError(this.handleError<Story[]>('getStories', []))
+    );
   }
 
   public upload(data: any): Observable<any> {
@@ -34,7 +53,8 @@ export class CloudService {
                 console.info(`Cloud service response: ${event.type} UploadProgress - loaded:${event.loaded}, total:${event.total}`);
                 break;
               case HttpEventType.Response:
-                console.info(`Cloud service response: ${event.type} Response - body:${event.body}`);
+                console.info(`Cloud service response: ${event.type} Response`);
+                console.dir(event.body);
                 break;
               case HttpEventType.DownloadProgress:
                 console.info(`Cloud service response: ${event.type} DownloadProgres`);

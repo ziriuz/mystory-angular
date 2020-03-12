@@ -1,0 +1,10 @@
+<div>
+ <section class="horizontal-scroll-view">
+  <ng-container *ngFor="let card of cards">
+   <div class="card--content">
+    <!--ng-container *ngComponentOutlet="card.component; injector: card.injector"></ng-container-->
+    <ng-container *ngTemplateOutlet="cardTemplateRef; context: { $implicit: card }"></ng-container>
+   </div>
+  </ng-container>
+ </section>
+</div>

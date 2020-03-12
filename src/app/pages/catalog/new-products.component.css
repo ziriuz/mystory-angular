@@ -1,0 +1,7 @@
+.card{
+    width:120px;
+    vertical-align: middle;
+}
+.rating span .mat-icon{
+  font-size: 14px !important;
+}

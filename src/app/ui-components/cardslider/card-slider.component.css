@@ -1,0 +1,12 @@
+.horizontal-scroll-view {
+    display: flex;
+    overflow-x: auto;
+    min-width: 100%;
+    min-height: 120px;
+}
+.card--content {    
+    margin: 5px;
+}
+.horizontal-scroll-view::-webkit-scrollbar {
+    display: none;
+}

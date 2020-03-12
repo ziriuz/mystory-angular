@@ -1,9 +1,29 @@
-<div class="logo">
+<!--div class="logo">
   <mat-icon>music_note</mat-icon>
-  <div>Audio Player</div>
-</div>
+  <div>{{ currentFile?.file.name}}</div>
+  <img src="{{ currentFile?.file.picture}}"/>
+</div-->
+<mat-card class="example-card">
+  <mat-card-content>
+    <div class="logo">
+    <img src="{{ currentFile?.file.picture }}" alt="{{ currentFile?.file.name }}">
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-icon></mat-icon>
+    <button mat-stroked-button><mat-icon>share</mat-icon></button>
+    <mat-icon></mat-icon>
+    <button mat-stroked-button><mat-icon>favorite</mat-icon></button>
+    <mat-icon></mat-icon>
+    <button mat-stroked-button><mat-icon>grade</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
+
 <div class="media-footer">
   <mat-toolbar color="secondary">
+    <mat-toolbar-row>
+      <span class='spacer'>{{ currentFile?.file.author }}. {{ currentFile?.file.name }}</span>
+    </mat-toolbar-row>
     <mat-toolbar-row>
       {{ state?.readableCurrentTime }}
       <mat-slider class="time-slider" min="0" [max]="state?.duration" step="1" [value]="state?.currentTime" (input)="onSliderChangeEnd($event)" [disabled]="state?.error || currentFile.index === undefined"></mat-slider>

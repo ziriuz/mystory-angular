@@ -21,8 +21,8 @@ export class FooterComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) { }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  ngOnDestroy(): void {    
+    //this.subscription.unsubscribe();
   }
 
   ngOnInit() {

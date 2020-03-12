@@ -16,14 +16,14 @@ export class DashboardComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          //{ title: 'Top 5', cols: 2, rows: 1, componentName: TopStoriesComponent },
+          { title: 'Top 5', cols: 2, rows: 1, componentName: TopStoriesComponent },
           { title: 'Новинки', cols: 2, rows: 1, componentName: NewProductsComponent }
         ];
       }
 
       return [
-        //{ title: 'Top 5', cols: 2, rows: 1, componentName: TopStoriesComponent },
-        { title: 'Новинки', cols: 2, rows: 1, componentName: NewProductsComponent }
+        { title: 'Top 5', cols: 1, rows: 1, componentName: TopStoriesComponent },
+        { title: 'Новинки', cols: 1, rows: 1, componentName: NewProductsComponent }
       ];
     })
   );

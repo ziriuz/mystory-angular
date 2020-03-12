@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 
-import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
@@ -14,6 +13,7 @@ import { LayoutModule }      from './pages/layout/layout.module';
 import { AudioPlayerModule } from './pages/audioplayer/audioplayer.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { CatalogModule } from './pages/catalog/catalog.module';
+import { UIModule } from './ui-components/ui.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { CatalogModule } from './pages/catalog/catalog.module';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    UIModule,
     LayoutModule,
     AudioPlayerModule,
     DashboardModule,

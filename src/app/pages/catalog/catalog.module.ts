@@ -8,6 +8,7 @@ import { NewProductsComponent } from './new-products.component';
 import { TopStoriesComponent } from './top-stories.component';
 import { StoryUploaderComponent } from './story-uploader.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UIModule } from 'src/app/ui-components/ui.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     CatalogRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    UIModule
   ],
   exports: [CatalogComponent, NewProductsComponent, TopStoriesComponent],
   entryComponents: [NewProductsComponent, TopStoriesComponent]

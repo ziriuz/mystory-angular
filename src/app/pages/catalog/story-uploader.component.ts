@@ -23,6 +23,7 @@ export class StoryUploaderComponent implements OnInit {
   uploadForm = this.fb.group({
     storyName: ['', Validators.required],
     author: ['', Validators.required],
+    outline: ['', Validators.required],
     city: ['']
   });
 
@@ -40,6 +41,10 @@ export class StoryUploaderComponent implements OnInit {
   get author() {
     return this.uploadForm.get('author');
   }
+  get outline() {
+    return this.uploadForm.get('outline');
+  }
+
   ngOnInit() {
     const id:number = +this.route.snapshot.paramMap.get('productId');
     this.product = this.catalogService.getSelectedProduct();
@@ -56,6 +61,8 @@ export class StoryUploaderComponent implements OnInit {
 
   callUploadService(file) {
     const formData = new FormData();
+    formData.append('name', this.storyName.value);
+    formData.append('author', this.author.value);
     formData.append('file', file.data);
     file.inProgress = true;
     this.cloudService.upload(formData)//.pipe(take(3))
@@ -63,9 +70,13 @@ export class StoryUploaderComponent implements OnInit {
       (res) => {
         switch (res.status) {
           case 'progress':
-            file.progress = res.message; break;
+            file.progress = res.message;
+            break;
           case 'other':
             console.log(`Uploader component received {status:${res.status}, message:${res.message}}`);
+            break;
+          case 'done':
+            file.message = res.message;
             break;
           default:
             file.message = `Upload status: ${res.status} (${res.message})`;
