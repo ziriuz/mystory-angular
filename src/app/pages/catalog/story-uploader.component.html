@@ -34,6 +34,13 @@
             <mat-form-field color="accent">
               <input matInput placeholder="Город" formControlName="city">
             </mat-form-field>
+            <mat-form-field color="accent">
+              <mat-label>Краткое содержание *</mat-label>
+              <textarea matInput formControlName="outline" placeholder="Напишите пару слов о чем сказка"></textarea>
+              <mat-error *ngIf="outline.invalid && (outline.dirty || outline.touched) && outline.errors.required">
+                Напишите краткое содержание
+              </mat-error>
+            </mat-form-field>
             <button type="submit" [disabled]="!uploadForm.valid">Submit</button>
             <input hidden #fileInput type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"/>
         </form>

@@ -63,6 +63,7 @@ export class StoryUploaderComponent implements OnInit {
     const formData = new FormData();
     formData.append('name', this.storyName.value);
     formData.append('author', this.author.value);
+    formData.append('outline', this.outline.value);
     formData.append('file', file.data);
     file.inProgress = true;
     this.cloudService.upload(formData)//.pipe(take(3))
